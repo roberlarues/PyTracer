@@ -5,7 +5,7 @@ import random
 import psutil
 import gc
 from functools import partial
-from models import rays
+from engine.models import rays
 
 SAMPLES_PER_PIXEL = 1
     

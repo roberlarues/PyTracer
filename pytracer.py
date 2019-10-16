@@ -1,6 +1,6 @@
-import engine
-import ppm_writer
-from models import image_model, scene
+from engine import engine
+from engine.io import ppm_writer
+from engine.models import image_model, scene
 
 if __name__ == '__main__':
     # Inicializa la imagen de salida y la escena que se va a renderizar

@@ -1,4 +1,4 @@
-import renderer
+from engine import renderer
 import numpy.matlib 
 import numpy as np 
 from . import camera, sphere, lights, material
