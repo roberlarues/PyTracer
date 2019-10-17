@@ -1,0 +1,84 @@
+{
+	"camera": {
+		"position": [-200, 0, 0],
+		"direction": [1, 0, 0],
+		"focal_length": 200.0
+	},
+	"lights": [
+		{
+			"type": "spot",
+			"position": [-60.0, 60.0, -80.0],
+			"intensity": 10000
+		}
+	],
+	"materials": [
+		{
+			"id": "diffuse_white"
+		},
+		{
+			"id": "diffuse_red",
+			"color": [255, 0, 0]
+		},
+		{
+			"id": "diffuse_green",
+			"color": [0, 255, 0]
+		},
+		{
+			"id": "specular_blue",
+			"color": [0, 0, 255]
+		},
+		{
+			"id": "specular_blue",
+			"color": [0, 0, 255],
+			"k_s": 0.8,
+			"alpha": 20
+		},
+		{
+			"id": "mirror",
+			"mirror": true
+		}
+	],
+	"objects": [
+		{
+			"position": [0.0, -3150.0, 0.0],
+			"radius": 3000.0,
+			"material": "diffuse_red"
+		},
+		{
+			"position": [0.0, 3150.0, 0.0],
+			"radius": 3000.0,
+			"material": "diffuse_green"
+		},
+		{
+			"position": [0.0, 0.0, 3100.0],
+			"radius": 3000.0,
+			"material": "diffuse_white"
+		},
+		{
+			"position": [0.0, 0.0, -3100.0],
+			"radius": 3000.0,
+			"material": "diffuse_white"
+		},
+		{
+			"position": [3100.0, 0.0, 0.0],
+			"radius": 3000.0,
+			"material": "diffuse_white"
+		},
+		{
+			"position": [-3300.0, 0.0, 0.0],
+			"radius": 3000.0,
+			"material": "diffuse_white"
+		},
+		
+		{
+			"position": [0.0, 0.0, 60.0],
+			"radius": 40.0,
+			"material": "specular_blue"
+		},
+		{
+			"position": [70.0, 120.0, 70.0],
+			"radius": 30.0,
+			"material": "mirror"
+		}
+	]
+}
