@@ -1,7 +1,8 @@
 {
 	"camera": {
 		"position": [-200, 0, 0],
-		"focal-length": 200.0
+		"direction": [1, 0, 0],
+		"focal_length": 200.0
 	},
 	"lights": [
 		{
@@ -29,7 +30,7 @@
 		{
 			"id": "specular_blue",
 			"color": [0, 0, 255],
-			"k-s": 0.8,
+			"k_s": 0.8,
 			"alpha": 20
 		},
 		{
@@ -79,5 +80,5 @@
 			"radius": 30.0,
 			"material": "mirror"
 		}
-	],
+	]
 }

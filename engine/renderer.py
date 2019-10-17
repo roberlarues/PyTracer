@@ -22,7 +22,7 @@ def shade_intersection(n, material, intersection_point, ray, scene):
     Devuelve
     --------
         color que se visualiza en la intersección desde el origen del rayo"""
-    v = np.subtract(intersection_point, scene.getCamera().position)
+    v = np.subtract(intersection_point, scene.get_camera().position)
     v = v / np.linalg.norm(v)
      
     if material.mirror == False:

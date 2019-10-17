@@ -71,6 +71,6 @@ def _calculate_pixel_color(scene, row, col):
         scene - escena a renderizar
         row - fila del píxel
         col - columna del píxel"""
-    ray = scene.getCamera().getPixelRay(row, col)
+    ray = scene.get_camera().get_pixel_ray(row, col)
     return scene.traceRay(ray)
     

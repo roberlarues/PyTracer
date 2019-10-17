@@ -17,7 +17,7 @@ class Camera:
         self._ibounces = config_reader.conf["lighting"]["indirect-bounces"]
         
             
-    def getPixelRay(self, row, col):
+    def get_pixel_ray(self, row, col):
         """Calcula el rayo que se trazará sobre un píxel
         
         Parámetros
