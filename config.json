@@ -1,0 +1,12 @@
+{
+	"fast-mode": true,
+	"lighting": {
+		"direct-bounces": 1,
+		"indirect-bounces": 0,
+		"indirect-samples": 50
+	},
+	"image": {
+		"width": 640,
+		"height": 480
+	}
+}

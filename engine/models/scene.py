@@ -15,11 +15,11 @@ class Scene:
         lights - conjunto de luces
         objects - conjunto de objetos
         image - imagen sobre la que se va a renderizar"""
-    _camera = camera.Camera((0, 0, 0))
     lights = []
     objects = []
     
     def __init__(self, image):
+        _camera = camera.Camera((0, 0, 0))
         self.load_scene1()
         self._camera.image = image
             

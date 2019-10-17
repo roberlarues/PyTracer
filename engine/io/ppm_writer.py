@@ -9,11 +9,11 @@ def write_image_model(image_model, file_name="output.ppm"):
     f = open(file_name, "w")
     f.write("P3\n")
     f.write("# Renderizado con PyTracer\n")
-    f.write(str(image_model.getW()) + " " + str(image_model.getH()) + "\n")
+    f.write(str(image_model.get_w()) + " " + str(image_model.get_h()) + "\n")
     f.write("255\n")
-    img = image_model.getImage()
-    h = image_model.getH()
-    w = image_model.getW()
+    img = image_model.get_image()
+    h = image_model.get_h()
+    w = image_model.get_w()
     for row in range(0, h):
         for col in range(0, w):
             color = img[row][col]

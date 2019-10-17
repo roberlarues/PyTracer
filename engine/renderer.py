@@ -6,8 +6,7 @@ import psutil
 import gc
 from functools import partial
 from engine.models import rays
-
-SAMPLES_PER_PIXEL = 1
+from engine.io import config_reader
     
 def shade_intersection(n, material, intersection_point, ray, scene):
     """Calcula el color que se mostrará en el punto de intersección de un rayo con un objeto
@@ -30,9 +29,11 @@ def shade_intersection(n, material, intersection_point, ray, scene):
         # Luz directa + luz indirecta
         color = _phong(material, scene, intersection_point, n, v) + _trace_path(intersection_point, ray, scene, n)
     else:
+        _dbounces = config_reader.conf["lighting"]["direct-bounces"]
+        _ibounces = config_reader.conf["lighting"]["indirect-bounces"]
         r = np.subtract(np.multiply(n, -2.0 * np.dot(v, n)), v)
         r = r / np.linalg.norm(r)
-        reflection_ray = rays.Ray(intersection_point + r, r, from_camera=False)
+        reflection_ray = rays.Ray(intersection_point + r, r, from_camera=False, max_direct_bounces=_dbounces, max_indirect_bounces=_ibounces)
         color = scene.traceRay(reflection_ray)
     
     if color[0] > 255:
@@ -121,10 +122,11 @@ def _trace_path(intersection_point, ray, scene, n):
     color = (0, 0, 0)
     if ray.max_indirect_bounces==0:
         return color
-        
-    for i in range(SAMPLES_PER_PIXEL):
+    
+    samples_per_pixel = config_reader.conf["lighting"]["indirect-samples"]
+    for i in range(samples_per_pixel):
         color = color + _trace_path_ray(intersection_point, ray, scene, n)
-    color = np.array(color) / SAMPLES_PER_PIXEL
+    color = np.array(color) / samples_per_pixel
     
     return color
     

@@ -1,4 +1,5 @@
 import time
+from engine.io import config_reader
 
 def start(image, scene):
     """Ejecuta el renderizado de una escena sobre una imagen
@@ -13,7 +14,11 @@ def start(image, scene):
     start_time = current_milli_time()
     
     print("Renderizando... [", end="",flush=True)
-    _render(scene, image, 0, image.get_h())
+    if not config_reader.conf["fast-mode"]:
+        _render(scene, image, 0, image.get_h())
+    else:
+        _fast_render(scene, image, 0, image.get_h())
+        
     print("]")
     
     elapsed_time_ms = current_milli_time() - start_time

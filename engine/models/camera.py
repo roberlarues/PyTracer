@@ -1,5 +1,6 @@
 import numpy as np 
 import numpy.matlib 
+from engine.io import config_reader
 from . import rays
 
 class Camera:
@@ -12,6 +13,8 @@ class Camera:
         self.direction = direction
         self.focal_length = focal_length
         self._fpoint = self.position + np.multiply(self.direction, self.focal_length)
+        self._dbounces = config_reader.conf["lighting"]["direct-bounces"]
+        self._ibounces = config_reader.conf["lighting"]["indirect-bounces"]
         
             
     def getPixelRay(self, row, col):
@@ -27,7 +30,7 @@ class Camera:
             El rayo a trazar sobre el píxel"""
         direction = self._get_cam_to_pixel_vector(row, col)
         direction = direction / np.linalg.norm(direction)
-        return rays.Ray(self.position, direction, from_camera=True)
+        return rays.Ray(self.position, direction, from_camera=True, max_direct_bounces=self._dbounces, max_indirect_bounces=self._ibounces)
         
     def _get_cam_to_pixel_vector(self, row, col):
         """Devuelve un vector desde la posición de la cámara hasta un píxel
