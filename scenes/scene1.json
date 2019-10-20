@@ -2,7 +2,8 @@
 	"camera": {
 		"position": [-200, 0, 0],
 		"direction": [1, 0, 0],
-		"focal_length": 200.0
+		"focal_length": 200.0,
+		"pix_per_unit": 2
 	},
 	"lights": [
 		{

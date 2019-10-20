@@ -14,13 +14,19 @@ class Sphere:
         _camera_calc_pt2 - almacena una parte constante en el cálculo de la intersección"""
                           
     
-    _camera_calc_oc = []
-    _camera_calc_pt2 = None
+    
     
     def __init__(self, position = (0, 0, 0), radius = 50, material = material.Material()):
         self.position = position
         self.radius = radius
         self.material = material
+        self._camera_calc_oc = None
+        self._camera_calc_pt2 = None
+        
+    def preinitialize(self, scene):
+        camera = scene.get_camera()
+        self._camera_calc_oc = np.subtract(camera.position, self.position)
+        self._camera_calc_pt2 = np.linalg.norm(self._camera_calc_oc) ** 2 - self.radius ** 2
         
     def getNormalAtPoint(self, point):
         """Calcula el vector normal de la esfera en un punto
@@ -45,9 +51,6 @@ class Sphere:
         --------
             Si existe una o varias intersecciones."""
         if ray.from_camera:
-            if len(self._camera_calc_oc) == 0:
-                self._camera_calc_oc = np.subtract(ray.position, self.position)
-                self._camera_calc_pt2 = np.linalg.norm(self._camera_calc_oc) ** 2 - self.radius ** 2
             oc = self._camera_calc_oc
             pt2 = self._camera_calc_pt2
         else:
@@ -71,9 +74,6 @@ class Sphere:
             desde el origen del rayo hasta el punto de intersección más
             cercano. Si no intersecta, devuelve -1."""
         if ray.from_camera:
-            if len(self._camera_calc_oc) == 0:
-                self._camera_calc_oc = np.subtract(ray.position, self.position)
-                self._camera_calc_pt2 = np.linalg.norm(self._camera_calc_oc) ** 2.0 - self.radius ** 2.0
             oc = self._camera_calc_oc
             pt2 = self._camera_calc_pt2
         else:

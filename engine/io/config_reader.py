@@ -11,6 +11,7 @@ def read_conf_file(file):
     global conf
     with open(file) as json_file:
         conf = json.load(json_file)
+        json_file.close()
     
 def read_file(file):
     """Carga los datos de un fichero
@@ -23,5 +24,7 @@ def read_file(file):
     ----------
         estructura de datos con el contenido del fichero"""
     with open(file) as json_file:
-        return json.load(json_file)
+        f = json.load(json_file)
+        json_file.close()
+        return f
     

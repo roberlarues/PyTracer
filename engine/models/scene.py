@@ -17,11 +17,10 @@ class Scene:
         objects - conjunto de objetos
         file_scene - archivo con los datos de la escena
         image - imagen sobre la que se va a renderizar"""
-    lights = []
-    objects = []
     
     def __init__(self, file_scene, image):
-        _camera = camera.Camera((0, 0, 0))
+        self.lights = []
+        self.objects = []
         self.load_scene(file_scene)
         self._camera.image = image
             
@@ -76,7 +75,9 @@ class Scene:
             
         for o in scene_data["objects"]:
             o["material"] = m_dict[o["material"]]
-            self.objects.append(sphere.Sphere(**o))
+            new_obj = sphere.Sphere(**o)
+            new_obj.preinitialize(self)
+            self.objects.append(new_obj)
             
     # Getters
         

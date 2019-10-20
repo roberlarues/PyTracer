@@ -3,7 +3,7 @@
 	"lighting": {
 		"direct-bounces": 1,
 		"indirect-bounces": 1,
-		"indirect-samples": 100
+		"indirect-samples": 3
 	},
 	"image": {
 		"width": 640,

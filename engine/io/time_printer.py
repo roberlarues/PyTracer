@@ -1,6 +1,6 @@
 
     
-def write_image_model(image_to_write, file_name="output.ppm"):
+def save_time(image_to_write, file_name="output.ppm"):
     """Guarda una imagen en un fichero con el formato PPM
     
     Parámetros

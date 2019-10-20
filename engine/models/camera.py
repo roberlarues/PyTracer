@@ -6,12 +6,11 @@ from . import rays
 class Camera:
     """Representa una cámara tipo pin-hole"""
     
-    image = None
-    
-    def __init__(self, position, direction=(1,0,0), focal_length=100):
+    def __init__(self, position, direction=(1,0,0), focal_length=100, pix_per_unit=1):
         self.position = position
         self.direction = direction
         self.focal_length = focal_length
+        self.pix_per_unit = pix_per_unit
         self._fpoint = self.position + np.multiply(self.direction, self.focal_length)
         self._dbounces = config_reader.conf["lighting"]["direct-bounces"]
         self._ibounces = config_reader.conf["lighting"]["indirect-bounces"]
@@ -43,5 +42,8 @@ class Camera:
         Devuelve
         --------
             Vector que apunta hacia el píxel"""
-        pixel_pos = self._fpoint + np.array((0, col - self.image.get_w() / 2, row - self.image.get_h() / 2))
+        pixel_pos = self._fpoint + np.array(( \
+            0, \
+            (col - self.image.get_w() / 2) / self.pix_per_unit, \
+            (row - self.image.get_h() / 2) / self.pix_per_unit))
         return np.subtract(pixel_pos, self.position)

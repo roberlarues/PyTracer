@@ -10,9 +10,9 @@ class ImageModel:
         h - alto de la imagen
         _img - matriz de colores de la imagen"""
         
-    _img = []
     
     def __init__(self, w=640, h=480):
+        self._img = []
         self.create(w, h)
      
     def create(self, w, h):
